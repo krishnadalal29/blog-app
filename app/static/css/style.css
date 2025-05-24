@@ -1,0 +1,89 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfcfb;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header */
+.header-main {
+    background-color: #f4e6e6;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #d1b2b2;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-title {
+    font-size: 28px;
+    color: #8B0000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-buttons .header-button {
+    background-color: #ffffff;
+    border: 2px solid #8B0000;
+    color: #8B0000;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-buttons .header-button:hover {
+    background-color: #8B0000;
+    color: #ffffff;
+}
+
+/* Content */
+.content {
+    margin-top: 40px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.post-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-item {
+    background-color: #fff0f0;
+    border: 1px solid #ecc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.post-title {
+    color: #800000;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    color: #333;
+}

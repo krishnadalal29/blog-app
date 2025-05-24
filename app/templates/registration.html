@@ -1,0 +1,35 @@
+<div class="content">
+  <h1 class="section-title">Register yourself.</h1>
+  <div class="login-form">
+    <form method="POST" action="">
+      <table class="center">
+        <tr class="login-username">
+          <td>Username:</td>
+          <td>
+            <input type="text" id="username" name="username" required />
+          </td>
+        </tr>
+        <tr class="login-password">
+          <td>Email:</td>
+          <td>
+            <input type="email" id="password" name="password" required />
+          </td>
+        </tr>
+        <tr class="login-password">
+          <td>Password:</td>
+          <td>
+            <input type="password" id="password" name="password" required />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="submit" class="login-button">Register</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    {% if error %}
+    <p style="color: #ff0000">{{ error }}</p>
+    {% endif %}
+  </div>
+</div>
