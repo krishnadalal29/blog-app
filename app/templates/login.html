@@ -1,0 +1,33 @@
+<div class="content">
+  <h1 class="section-title">Login</h1>
+  <div class="login-form">
+    <form method="POST" action="{{ url_for('main.login') }}">
+      {{form.csrf_token }}
+      <table class="center">
+        <tr class="login-username">
+          <td>{{form.username.label}}:</td>
+          <td>
+            <!-- <input type="text" id="username" name="username" required /> -->
+            {{ form.username }}
+          </td>
+        </tr>
+        <tr class="login-password">
+          <!-- <td>Password:</td>
+          <td>
+            <input type="password" id="password" name="password" autocomplete="current-password" required />
+          </td> -->
+          <td>{{ form.password.label }}:</td>
+          <td>{{ form.password }}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" class="login-button" value="Login" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    {% if error %}
+    <p style="color: #ff0000">{{ error }}</p>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<body onload="LoadPage()">
+  <header class="header-main">
+    <div class="header-title" onclick="LoadPage()">Daily Drafts</div>
+    <nav class="nav-buttons">
+          {% if current_user %} 
+            {{ current_user.username }}
+          {% endif %}
+      <button class="header-button" id="loginButton" onclick="loginPage()">
+        Login
+      </button>
+      <button class="header-button" id="registerButton" onclick="registrationPage()">
+        Register
+      </button>
+    </nav>
+  </header>
+  <iframe id="frame" style="width: 100%; border: none"></iframe>
+  <script>
+    function injectStyles() {
+      const iframe = document.getElementById("frame");
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframe.style.height = iframeDoc.body.scrollHeight + "px";
+    }
+
+    function loginPage() {
+      document.getElementById("frame").src = "/templates/login";
+      document.getElementById("frame").onload = injectStyles;
+      document.getElementById("loginButton").hidden = true;
+      document.getElementById("registerButton").hidden = false;
+    }
+    function registrationPage() {
+      document.getElementById("frame").src = "/templates/registration";
+      document.getElementById("frame").onload = injectStyles;
+      document.getElementById("registerButton").hidden = true;
+      document.getElementById("loginButton").hidden = false;
+    }
+    function LoadPage() {
+      document.getElementById("loginButton").hidden = false;
+      document.getElementById("registerButton").hidden = false;
+      document.getElementById("frame").src = "/templates/index";
+      document.getElementById("frame").onload = injectStyles;
+    }
+  </script>
+</body>
