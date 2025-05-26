@@ -1,6 +1,10 @@
 from flask import Blueprint, render_template
+<<<<<<< HEAD
 from .forms import LoginForm
 from .models import Post, User
+=======
+from .models import Post
+>>>>>>> 7da42ac921eab4ce1238c983788457f2a89a4871
 import os
 
 main = Blueprint("main", __name__)
