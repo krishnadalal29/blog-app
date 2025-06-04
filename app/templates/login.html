@@ -1,4 +1,4 @@
-<div class="content">
+<!-- <div class="content">
   <h1 class="section-title">Login</h1>
   <div class="login-form">
     <form method="POST" action="{{ url_for('main.login') }}">
@@ -7,15 +7,11 @@
         <tr class="login-username">
           <td>{{form.username.label}}:</td>
           <td>
-            <!-- <input type="text" id="username" name="username" required /> -->
+            
             {{ form.username }}
           </td>
         </tr>
         <tr class="login-password">
-          <!-- <td>Password:</td>
-          <td>
-            <input type="password" id="password" name="password" autocomplete="current-password" required />
-          </td> -->
           <td>{{ form.password.label }}:</td>
           <td>{{ form.password }}</td>
         </tr>
@@ -30,8 +26,29 @@
     <p style="color: #ff0000">{{ error }}</p>
     {% endif %}
   </div>
-<<<<<<< HEAD
+</div> -->
+
+{% extends "base.html" %} 
+{% block content %}
+<div class="content">
+  <h1 class="section-title">Login</h1>
+  <div class="login-form">
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <table class="center">
+        <tr class="login-username">
+          <td>{{ form.username.label }}:</td>
+          <td>{{ form.username() }}</td>
+        </tr>
+        <tr class="login-password">
+          <td>{{ form.password.label }}:</td>
+          <td>{{ form.password() }}</td>
+        </tr>
+        <tr>
+          <td colspan="2">{{ form.submit(class="login-button") }}</td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>
-=======
-</div>
->>>>>>> 7da42ac921eab4ce1238c983788457f2a89a4871
+{% endblock %}

@@ -1,40 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
 <div class="content">
   <h1 class="section-title">Register yourself.</h1>
   <div class="login-form">
-    <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <form method="POST">
       <table class="center">
         <tr class="login-username">
-          <td>Username:</td>
+          <td>{{ form.username.label }}</td>
           <td>
-            <input type="text" id="username" name="username" required />
+            {{ form.username() }}
           </td>
         </tr>
-<<<<<<< HEAD
         <tr class="login-uasername">
-          <td>Email:</td>
+          <td>{{ form.email.label }}</td>
           <td>
-            <input type="email" id="email" name="password" required />
-=======
-        <tr class="login-password">
-          <td>Email:</td>
-          <td>
-            <input type="email" id="password" name="password" required />
->>>>>>> 7da42ac921eab4ce1238c983788457f2a89a4871
+            {{ form.email() }}
           </td>
         </tr>
         <tr class="login-password">
-          <td>Password:</td>
+          <td>{{ form.password.label }}</td>
           <td>
-<<<<<<< HEAD
-            <input type="password" id="r-password" name="password" autocomplete="current-password" required />
-=======
-            <input type="password" id="password" name="password" required />
->>>>>>> 7da42ac921eab4ce1238c983788457f2a89a4871
+            {{ form.password() }}
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            <button type="submit" class="login-button">Register</button>
+             {{ form.submit(class="login-button") }}
           </td>
         </tr>
       </table>
@@ -44,3 +37,4 @@
     {% endif %}
   </div>
 </div>
+{% endblock %}

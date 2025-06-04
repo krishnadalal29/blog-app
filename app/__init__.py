@@ -8,7 +8,7 @@ load_dotenv()
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'main.login'
 
 def create_app():
     app = Flask(__name__)

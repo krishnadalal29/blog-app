@@ -1,48 +1,50 @@
-from flask import Blueprint, render_template
-<<<<<<< HEAD
-from .forms import LoginForm
-from .models import Post, User
-=======
-from .models import Post
->>>>>>> 7da42ac921eab4ce1238c983788457f2a89a4871
-import os
+from flask import Blueprint, render_template, flash, redirect, url_for
+from .forms import LoginForm, RegisterForm
+from .models import Post, User, load_user
+from flask_login import logout_user, login_required, current_user, login_user
+
+from . import db
+
 
 main = Blueprint("main", __name__)
 
 
 @main.route("/")
 def index():
-    posts = Post.query.all()
-    return render_template("frame_wrapper.html", page="base", posts=posts)
+    return render_template('index.html')
 
-@main.route("/templates/<filename>")
-def templates(filename):
-    template_path = f"{filename}.html"
-    if os.path.exists(os.path.join("app/templates/", template_path)):
-        if filename == "index":
-            posts = Post.query.all()
-            return render_template("frame_wrapper.html", page=filename, posts=posts)
-        elif filename == "login":
-            form = LoginForm()
-            return render_template("frame_wrapper.html", page=filename, form=form)
-        elif filename == "register":
-            return render_template("frame_wrapper.html", page=filename)
-        else:
-            return render_template("frame_wrapper.html", page=filename)
-    else:
-        return f"Page '{filename}' not found.", 404
-
-@main.route("/login", methods=["POST"])
+@main.route("/login", methods=["GET","POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and user.password == form.password.data:
-            print("Login successful")
-            return render_template("frame_wrapper.html",page="index", posts=Post.query.all())
-        else:
-            print("Login failed")
-            form.username.errors.append("Invalid username or password")
-            return render_template("frame_wrapper.html", page="login", form=form, error=form.errors)
-    else:
-        return render_template("frame_wrapper.html", page="login", form=form, error=form.errors)
+            login_user(user)
+            return redirect(url_for('main.user_posts'))
+        flash('Invalid credentials')
+    return render_template('login.html', form=form)
+
+
+@main.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        new_user = User(username=form.username.data)
+        new_user.set_password(form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user)
+        return redirect(url_for('main.user_posts'))
+    return render_template('registration.html', form=form)
+
+@main.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
+
+@main.route('/posts')
+@login_required
+def user_posts():
+    posts = Post.query.filter_by(user_id=current_user.id).all()
+    return render_template('user_posts.html', posts=posts)
